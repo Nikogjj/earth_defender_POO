@@ -53,19 +53,24 @@ export class GameObject{
             max : Math.floor(this.position.y)
         }
         const zoneWidthGameObject = {
-            max : Math.floor(this.position.x + this.getImage().width),
-            min : Math.floor(this.position.x)
+            min : Math.floor(this.position.x),
+            max : Math.floor(this.position.x + this.getImage().width)
         }
-        // const condition1 : boolean = other.position.y >= zoneHeightGameObject.min && other.position.y <= zoneHeightGameObject.max;
-        // const condition2 : boolean = other.position.y >= zoneHeightGameObject.min && other.position.y <= zoneHeightGameObject.max
+        // console.log(zoneHeightGameObject,zoneWidthGameObject)
         const heightOtherImage = other.getImage().height
         const widthOtherImage = other.getImage().width
         if (zoneHeightGameObject.min <= other.position.y && zoneHeightGameObject.max >= other.position.y-heightOtherImage) {
-            if (zoneWidthGameObject.min <= other.position.x && zoneWidthGameObject.max >= other.position.x-widthOtherImage ) {
-                console.log(other.position.y-heightOtherImage)
-                return true;
+            if (zoneWidthGameObject.min <= other.getPosition().x+widthOtherImage && zoneWidthGameObject.max >= other.getPosition().x) {
+                console.log("touché")
+                other.setPosition({x:0,y:0})
             }
         }
         return false;
     }
 }
+
+//player y min 412 - max 487
+
+//height player 75
+//height alien 88
+// = 163
